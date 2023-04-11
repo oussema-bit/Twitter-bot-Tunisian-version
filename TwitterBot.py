@@ -2,6 +2,7 @@ import snscrape.modules.twitter as sntwitter #alias
 import pandas as pd
 import datetime
 import random
+import os
 
 with open('keywordsFR.txt', 'r') as file:
     keywordsFR = [line.strip(',\n') for line in file.readlines()]
@@ -55,8 +56,12 @@ while True:
 
     random_number = random.randint(0, 99)
     csvName = source + str(random_number) + language +startdate_obj.strftime("%Y-%m-%d")+enddate_obj.strftime("%Y-%m-%d")+ '.csv'
-    df.to_csv(csvName, index=False)
-    print("Check the csv under the name " + csvName + " !!")
+    csv_file=df.to_csv(csvName, index=False)
+    read_file = pd.read_csv(csvName)
+    xlsxName=source + str(random_number) + language +startdate_obj.strftime("%Y-%m-%d")+enddate_obj.strftime("%Y-%m-%d")+'.xlsx'
+    read_file.to_excel(r'Excel/'+xlsxName, index=None, header=True)
+    print("Check the excel file under Excel/" + xlsxName + " !!")
+    os.remove(csvName)
     choice=input("If you wish to continue mining press enter else type 0 to quit:[enter] ")
     if choice == "0":
         break
