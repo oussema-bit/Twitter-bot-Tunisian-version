@@ -4,12 +4,12 @@ import datetime
 import random
 import os
 
-with open('keywordsFR.txt', 'r') as file:
+with open('keywordsFR.txt', 'r',encoding='utf-8') as file:
     keywordsFR = [line.strip(',\n') for line in file.readlines()]
 
 keywordsFRForQuery=" OR ".join(keywordsFR)
 
-with open('keywordsAR.txt', 'r') as file:
+with open('keywordsAR.txt', 'r',encoding='utf-8') as file:
     keywordsAR = [line.strip(',\n') for line in file.readlines()]
 
 keywordsARForQuery=" OR ".join(keywordsAR)
